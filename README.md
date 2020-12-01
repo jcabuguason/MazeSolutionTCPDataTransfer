@@ -6,3 +6,10 @@ Program to convert solution to randomly generated maze into motor input for a ro
 1. The TCP Server is located in the MazeSolutionServer.py code and listens for client sockets to send the motor input to
 1. The ClientSocket.py program creates a client socket that connects to the server and takes the data from the server
 
+SAMPLE MAZE SOLUTION
+
+![Project diagram](examplemazesolution.png)
+
+DATA TRANSMITTED FROM SERVER TO CLIENT
+
+![Project diagram](tcpdata.png)
