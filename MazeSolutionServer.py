@@ -1,3 +1,4 @@
+
 import pygame
 import time
 import random
@@ -111,12 +112,6 @@ def solveMaze (x,y,aSpaces,grid,currentPath):
     currentPath.pop()
     return
 
-#def convertToMotorInput(index):
-#    #robot input to go to the right
-#    if solution[index]+80 == solution(index+1):
-#        return 
-    
-
 drawGrid(n)
 carveMazefrom(0,0,grid)
 solveMaze(0,0,availableSpaces,grid,[])
@@ -130,8 +125,6 @@ for i in solution:
 
 
 
-
-
 #display the solution array for reference
 for i in solution:
     print(str(i[0])+"\t"+str(i[1]));
@@ -141,7 +134,7 @@ for i in solution:
 motorInput = []
 
 #starting position is down, check if robot is moving down or to the right
-#if going down no need to rotate robot at the start
+#if going down no need to rotate robot at the start if going right rotate left
 if(solution[0][0]+80 == solution[1][0]):
     motorInput.append("[255][0][0][255]")
 
@@ -162,7 +155,7 @@ for i in range(len(solution)):
     #if change in position move forward
     if (abs(currentX-nextX) == 80) or (abs(currentY-nextY) == 80 ):
         #move forward
-        motorInput.append("[0][255][0][255]")
+        motorInput.append("[255][255][0][0]")
 
     #skip first iteration as no rotation needed
     if i == 0:
@@ -178,14 +171,14 @@ for i in range(len(solution)):
 
     #rotate right
     if (nextChangeInY == 80 and prevChangeInX == 80) or (nextChangeInX == -80 and prevChangeInY == 80) or (nextChangeInX == 80 and prevChangeInY == -80) or (nextChangeInY == -80 and prevChangeInX == -80):
-        motorInput.append("[0][255]][255][0]")
+        motorInput.append("[0][255][255][0]")
     #rotate left
     if (nextChangeInX == 80 and prevChangeInY == 80) or (nextChangeInX == -80 and prevChangeInY == -80) or (nextChangeInY == -80 and prevChangeInX == 80) or (nextChangeInY == 80 and prevChangeInX == -80):
         motorInput.append("[255][0][0][255]")
 
 #forward one last time to get robot to destination 
-motorInput.append("[0][255][0][255]")
-
+motorInput.append("[255][255][0][0]")
+motorInput.append("[0][0][0][0]")
 
 #listen on the server
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -205,3 +198,4 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
