@@ -8,8 +8,8 @@ Program to convert solution to randomly generated maze into motor input for a ro
 
 SAMPLE MAZE SOLUTION
 
-![Maze Solution](examplemazesolution.png)
+![Maze Solution](examplemazesolution.PNG)
 
 DATA TRANSMITTED FROM SERVER TO CLIENT
 
-![Transmitted Data](tcpdata.png)
+![Transmitted Data](tcpdata.PNG)
